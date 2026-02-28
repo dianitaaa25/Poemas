@@ -1,0 +1,295 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.obra {
+  padding: 0;
+}
+.crp.obra{
+  padding-top: 1rem;
+}
+/* ===== GRID PRINCIPAL ===== */
+.obra-contenedor {
+  display: grid;
+  grid-template-columns: 1.6fr 0.4fr;
+  align-items: center;
+}
+
+/* ===== IMAGEN CON MARCO DORADO ===== */
+.obra-imagen {
+  position: relative;
+  padding: 12px;              /* marco más grande */
+  border-radius: 0;
+  margin: 2.6rem;
+  cursor: pointer;
+
+  background: linear-gradient(
+    135deg,
+    #8f6b09,
+    #e5dc7d,
+    #8f6b09
+  );
+
+  background-size: 200% auto;
+  background-position: left center;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.35),
+    0 20px 40px rgba(0,0,0,0.45);
+
+  transition:
+    background-position 1.1s ease,
+    box-shadow 0.6s ease,
+    transform 0.6s ease;
+}
+
+.obra-imagen:hover {
+  background-position: right center;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.45),
+    0 28px 55px rgba(0,0,0,0.6);
+}
+
+/* la imagen NO tiene efecto */
+.obra-imagen img {
+  width: 100%;
+  display: block;
+  background: #111;
+  border-radius: 0;
+}
+
+/* ===== INFO ===== */
+.obra-info {
+  opacity: 1;          /* asegura visibilidad */
+  animation: deslizar 1.8s ease forwards;
+  padding-right: 2.4rem;
+}
+.obra-info:hover .obra-linea {
+  width: 140px;
+  background: linear-gradient(
+    to right,
+    #d4af37,
+    #f6e27a,
+    transparent
+  );
+}
+
+.obra-titulo {
+  font-family: inherit;
+  font-size: 2.2rem;
+  margin: 0 0 0.5rem 0;
+  color: #8f6b09;
+  text-shadow:
+    0 0 12px #d4af3783;
+}
+
+.obra-fecha {
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: 0;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+.obra-fecha::after {
+  content: "";
+  display: block;
+
+  width: 160px;
+  height: 3px;
+  margin-top: 0.8rem;
+
+  background: linear-gradient(
+    to right,
+    #8f6b09 0%,
+    #e5dc7d 50%,
+    #8f6b09 100%
+  );
+
+  background-size: 200% auto;
+  background-position: left center;
+
+  transition: background-position 0.9s ease;
+}
+
+.obra-info:hover .obra-fecha::after {
+  background-position: right center;
+}
+
+.obra-linea {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(to right, #d4af37, transparent);
+  margin-bottom: 1.5rem;
+  transition: width 1.2s ease, background 1.2s ease;
+}
+
+.obra-descripcion {
+  font-size: 1.05rem;
+  max-width: 420px;
+  opacity: 0.9;
+  color: #2b2b2b;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes deslizar {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 900px) {
+
+  .obra-contenedor {
+    grid-template-columns: 1fr;
+  }
+
+  /* el padding lo maneja el contenedor */
+  .crp.obra {
+    padding: 2.6rem;
+  }
+
+  /* quitar márgenes que rompen el layout */
+  .obra-imagen,
+  .obra-info {
+    margin: 0;
+  }
+
+  /* respiración interna */
+  .obra-info {
+    padding: 2rem 0;
+  }
+
+  .obra-titulo {
+    font-size: 2.2rem;
+  }
+
+  .obra-descripcion {
+    max-width: 100%;
+  }
+}
+
+/* ===== VISOR DE DIBUJO INDIVIDUAL ===== */
+.visor-dibujo {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 10, 0.88);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  z-index: 9999;
+}
+
+.visor-dibujo.activo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* MARCO DORADO (idéntico al de la galería) */
+.visor-dibujo img {
+  max-width: 90%;
+  max-height: 85vh;
+
+  padding: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #8f6b09,
+    #e5dc7d,
+    #8f6b09
+  );
+
+  background-size: 200% auto;
+  background-position: left center;
+
+  box-shadow:
+    0 25px 50px rgba(0,0,0,0.65),
+    inset 0 0 0 1px rgba(255,255,255,0.35);
+
+  animation: goldMove 1.8s ease infinite alternate;
+
+  cursor: zoom-in;
+  transition:
+    transform 0.45s ease,
+    background-position 1.2s ease;
+  touch-action: none;
+}
+
+.visor-dibujo img.zoom {
+  cursor: zoom-out;
+}
+
+@keyframes goldMove {
+  from { background-position: left center; }
+  to   { background-position: right center; }
+}
+
+#visorCerrar {
+  position: absolute;
+  top: 26px;
+  right: 30px;
+
+  background: none;
+  border: none;
+  padding: 0;
+
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1;
+
+  color: rgba(245, 233, 166, 0.9);
+
+  cursor: pointer;
+  user-select: none;
+
+  text-shadow:
+    0 0 10px rgba(245, 233, 166, 0.35),
+    0 0 24px rgba(0,0,0,0.6);
+
+  opacity: 0.85;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+#visorCerrar:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+#visorCerrar:active {
+  transform: scale(0.92);
+}
+
+@media (prefers-color-scheme: dark) {
+  .obra-titulo {
+    color: #f5e9a6;
+    text-shadow:
+      0 0 14px rgba(245, 233, 166, 0.45);
+  }
+  .obra-descripcion {
+    color: rgba(254, 253, 162, 0.88);
+  }
+
+}
+

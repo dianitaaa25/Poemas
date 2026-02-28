@@ -12,6 +12,8 @@ body {
 .page-wrap {
   max-width: 700px;
   margin: 0 auto;   /* 👈 centra todo */
+  padding: 1.5rem;
+  padding-top: 0;
 }
 
 /* ===== ENCABEZADO DE PÁGINA ===== */
@@ -65,7 +67,7 @@ body {
 .fleur-de-leah-regular {
   font-family: "Fleur De Leah",'Brush Script MT', cursive;
   font-weight: 600;
-  font-size: 60px;
+  font-size: 58px;
   font-style: normal;
   margin: 2%;
 }
@@ -111,16 +113,16 @@ h1 a {
   font-style: italic;
   opacity: 0.85;
 }
-.enc-logo {
+/* Logo */
+.gold-svg {
   position: absolute;
-  bottom: -65px;          
-  left: 12px;          
-  height: 220px;           
+  bottom: -45px;
+  left: 8px;
   width: auto;
-  filter: drop-shadow(0 6px 8px #8f6b09);
-  /*outline: 3px solid red;*/
+  height: 210px;
+  fill: url(#gold-gradient);
+  filter: drop-shadow(0px 0px 10px rgba(218, 165, 32, 0.5));
 }
-
 
 /* ===== MENÚ DE PÁGINA ===== */
 .menu{
@@ -132,10 +134,10 @@ h1 a {
   width: 100%;
   max-width: 700px;
   display: flex;      
-  justify-content: left;
+  justify-content: right;
   gap: 8px;        
   padding: 5px;
-  padding-left: 32%;
+  padding-right: 3rem !important;
 }
 .menu::before {
     content: "";
@@ -217,10 +219,11 @@ h1 a {
 
 .crp h3 {
   margin: 0;
+  font-size: 1.5rem;
 }
 
 .poema {
-  white-space: pre-line;
+  white-space: pre-wrap;
   line-height: 1.2;
 }
 
@@ -319,7 +322,8 @@ h1 {
   left: 50%;
   right: auto;
   overflow: hidden;
-  width: 320px;
+  width: 90%;
+  max-width: 320px;
   transform: translateX(-50%) translateY(20px) scale(0.95);
 
   background: linear-gradient(
@@ -346,7 +350,6 @@ h1 {
   opacity: 0;
   --shine-opacity: 1;
   pointer-events: none;
-  transform: translateY(20px) scale(0.95);
 
   transition:
     opacity 0.5s ease,
@@ -393,15 +396,6 @@ h1 {
   }
 }
 
-
-
-/* Responsive */
-@media (max-width: 600px) {
-  .pie-top {
-    grid-template-columns: 1fr;
-  }
-}
-
 .social {
   display: flex;
   align-items: center; /* centra verticalmente texto + icono */
@@ -444,47 +438,57 @@ h1 {
 }
 
 @media (max-width: 600px) {
-  .enc,
-  .menu,
-  .crp {
-    padding: 1.2rem;
+.page-wrap {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
   }
-
-  .enc-logo {
-  bottom: -15px;          
-  left: 12px;          
-  height: 200px;           
-  width: auto;
+.enc,
+.menu,
+.crp,
+.pie {
+    max-width: 100%;
+    width: 100%;
   }
-
-}
-@media (max-width: 600px) {
-  .toast {
-    bottom: 20px;
+.toast {
+    top: auto;
+    bottom: 40px;
     font-size: 0.85rem;
+    width: 75%;
+    max-width: 280px;
   }
-}
-
-@media (max-width: 800px) {
-  
-  .enc-logo {
-  bottom: -15px;          
-  left: 12px;          
-  height: 180px;           
+.gold-svg {
+  bottom: 0px;          
+  left: 10px;          
+  height: 100px;           
   width: auto;
   }
-  .responsive{
-    max-width: 400px;
-    float: right;
+.fleur-de-leah-regular {
+  font-size:33px;
+}
+.enc h1::after {
+  content: "";
+  display: block;
+  width: 200px;
+}
+.enc-sub{
+  font-size:14px;
+}
+.menu{
+  display: flex;      
+  justify-content: right;
+  gap: 8px;        
+  padding: 5px;
+  padding-right: 2rem !important;
+}
+.pie-top {
+    grid-template-columns: 1fr 1fr;
+  }
+.pie-contacto {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
   }
 }
-
-@media (max-width: 1000px) {
-   .menu{
-    padding-left: 30.3%;
-  }
-}
-
 
 /* ===== MODO OSCURO ===== */
 @media (prefers-color-scheme: dark) {
@@ -521,3 +525,4 @@ h1 {
     color: #cfcaca;  
   }
 }
+

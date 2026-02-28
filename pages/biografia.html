@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Biografía</title>
-<link rel="icon" href="/assets/img/logo/torsacovas.ico">
-<link rel="stylesheet" href="/assets/css/style.css">
-<link rel="stylesheet" href="/pages/poemas.css">
+<link rel="icon" href="../assets/img/logo/torsacovas.ico">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/pages/biografia.css">
+<link rel="stylesheet" href="../assets/css/carousel-dorado.css">
+
+
 
 
 <link rel="preload"
@@ -31,12 +35,24 @@
     <div id="menu"></div>
   </div>
 
+    
 
   <div class="crp">
+
+    <div class="bio-foto">
+      <img src="../assets/img/pages/biografia/biografia.JPG" alt="Héctor Samil Acosta">
+    </div>
 
       <h3>Biografía</h3>
 
         <div class="poema">
+Soy Héctor Samil Acosta, me considero dibujante, pintor y poeta amateur.
+
+Escribo porque hay emociones que no saben quedarse quietas, porque existen palabras que no aprenden a nacer en la voz y buscan refugio en la escritura. Mis textos caminan entre el amor y su sombra, el desamor; la psicología y la conciencia que despierta; la memoria y esos instantes mínimos que dejan huella sin hacer ruido; las problemáticas sociales y las denuncias que incomodan; la hipocresía del ser humano, su introspección y su eterna búsqueda de sentido. Creo en la palabra como refugio y como herida, como la única forma de decir aquello que, a veces, cuesta incluso sentir.
+
+Dibujo porque es parte inherente de mi esencia. Me gusta pensar que, si algo te duele, te inspira, te envuelve o provoca en ti cualquier emoción, no existe mejor camino para darle sentido que plasmarlo en una hoja, convertirlo en una obra de arte única. La expresión artística es una forma de ver la vida, de comprender, de amar. La pintura y el dibujo son ventanas al alma del autor, a través de las cuales se proyectan sentimientos, pensamientos e ilusiones. El arte no debe dejarse morir: el artista vive por sus obras y, si es necesario, muere por ellas.
+
+Aquí comparto poemas, dibujos y obras originales: fragmentos de lo que soy y de lo que observo. Te invito a echar un vistazo y luego dejar un comentario sobre la impresión que te dejó el sitio y su contenido. ¡Muchas gracias!
 
         </div>
 
@@ -44,14 +60,20 @@
 
   </div>
 
+  <div id="carousel"></div>
   <div id="footer"></div>
 
 </div>
 
-<script src="/assets/js/load-partials.js"></script>
-<script src="/assets/js/contact-form.js"></script>
+<div id="lightbox" class="lightbox">
+  <img id="lightbox-img" src="" alt="Foto ampliada">
+</div>
+
+<script src="../assets/js/load-partials.js"></script>
+<script src="../assets/js/contact-form.js"></script>
+<script src="../assets/js/pages/biografia/biografia.js"></script>
+<script src="../assets/js/carousel-dorado.js" defer></script>
 
 </body>
 
 </html>
-

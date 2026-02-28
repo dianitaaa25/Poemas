@@ -1,0 +1,287 @@
+/* Galería */
+.crp .poema {
+  margin: -30px;      /* lo centra */
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem; /* espacio uniforme */
+  padding: 2.5rem;
+  margin: 0;
+}
+.galeria a {
+  text-decoration: none;
+  color: inherit;
+}
+.galeria a:hover {
+  text-decoration: none;
+}
+
+.dibujo {
+  padding: 8px;
+  border-radius: 18px;
+  margin: 0;
+
+  background: linear-gradient(
+    135deg,
+    #8f6b09,
+    #e5dc7d,
+    #8f6b09
+  );
+
+  background-size: 200% auto;
+  background-position: left center;
+  border-radius: 6px;
+  cursor: pointer;
+
+  transition:
+    background-position 0.9s ease,
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.35),
+    0 10px 22px rgba(0,0,0,0.35);
+}
+
+.dibujo:hover {
+  background-position: right center;
+  transform: scale(1.03);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.45),
+    0 14px 28px rgba(0,0,0,0.45);
+}
+
+.dibujo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #111;
+  margin-top: -40px;
+}
+
+/* Animación */
+@keyframes oro-mov {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.dibujo .titulo-dibujo {
+  font-size: 1.2rem;
+  margin-top: 0.1rem;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  /* efecto delicado */
+  letter-spacing: 0.02em;
+  text-shadow: 
+    0 0 8px rgba(255,255,255,0.25),
+    0 0 18px rgba(0, 0, 0, 0.71);
+  animation: respirar 6s ease-in-out infinite;
+}
+.dibujo h3 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  white-space: normal;
+}
+
+/* ===== LIGHTBOX DIBUJOS ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 10, 0.88);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+.lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80vh;
+
+  padding: 8px;
+
+  background: linear-gradient(
+    135deg,
+    #8f6b09,
+    #e5dc7d,
+    #8f6b09
+  );
+  background-size: 200% auto;
+  background-position: left center;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.35);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    background-position 1.2s ease;
+
+  animation: goldMove 1.8s ease infinite alternate;
+  cursor: zoom-in;
+  touch-action: none;
+}
+/* ===== CONTENIDO LIGHTBOX ===== */
+.lightbox-figure {
+  position: relative;
+  text-align: center;
+}
+
+/* Fade */
+.lightbox img.fade {
+  opacity: 0;
+}
+
+/* Zoom extra */
+.lightbox img.zoomed {
+  transform: scale(2);
+  cursor: zoom-out;
+}
+
+/* Texto inferior */
+.lightbox figcaption {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: #f5e9a6;
+  opacity: 0.85;
+
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.lightbox .contador {
+  font-style: italic;
+}
+
+.lightbox .titulo {
+  font-weight: 600;
+}
+.lightbox .titulo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.lightbox .titulo a:hover {
+  text-decoration: none;
+}
+
+@keyframes goldMove {
+  from { background-position: left center; }
+  to   { background-position: right center; }
+}
+
+/* ===== NAVEGACIÓN LIGHTBOX — FLOTANTE ===== */
+.lightbox .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: none;
+  border: none;
+  padding: 0;
+
+  font-size: 3.2rem;
+  font-weight: 300;
+  line-height: 1;
+  font-family: serif;
+
+  color: rgba(245, 233, 166, 0.85);
+
+  cursor: pointer;
+  user-select: none;
+
+  text-shadow:
+    0 0 12px rgba(245, 233, 166, 0.35),
+    0 0 28px rgba(0,0,0,0.7);
+
+  opacity: 0.6;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.lightbox .nav:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.15);
+}
+
+.lightbox .nav:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Posición */
+.lightbox .prev {
+  left: 26px;
+}
+
+.lightbox .next {
+  right: 26px;
+}
+
+/* Cursor por defecto (fuera de la imagen) */
+.lightbox {
+  cursor: default;
+}
+
+/* Imagen sin zoom */
+.lightbox img {
+  cursor: zoom-in;
+}
+
+/* Imagen con zoom */
+.lightbox img.zoomed {
+  cursor: zoom-out;
+}
+
+/* Mientras se arrastra */
+.lightbox img.dragging {
+  cursor: grabbing;
+}
+
+@media (max-width: 600px) {
+  .lightbox .nav {
+    font-size: 2.4rem;
+  }
+
+  .lightbox .prev {
+    left: 14px;
+  }
+
+  .lightbox .next {
+    right: 14px;
+  }
+
+  .dibujo .titulo-dibujo {
+    margin: 0; 
+    padding: 0;
+    font-size: 1rem;
+  }
+
+  .dibujo h3 {
+    margin: 0;
+    padding: 0;
+  }
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+}

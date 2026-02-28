@@ -1,0 +1,117 @@
+.crp .poema {
+  padding-top: -20px;
+  text-align: justify !important;
+}
+
+.bio-wrap {
+  position: relative;
+}
+.bio-wrap::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Contenedor de la foto */
+.bio-foto {
+  float: right;
+  margin: 0 0 1rem 1.5rem;
+}
+
+.bio-foto img {
+  width: 160px;
+  height: auto;
+  border-radius: -6px;
+
+  /* Marco dorado */
+  padding: 6px;
+  background: linear-gradient(
+    135deg,
+    #8f6b09,
+    #e5dc7d,
+    #8f6b09
+  );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.4),
+    0 8px 16px rgba(0,0,0,0.25);
+
+  background-size: 200% auto;
+  background-position: left center;
+  transition: background-position 0.8s ease;
+}
+
+.bio-foto img:hover {
+  background-position: right center;
+}
+
+.bio-foto img {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.25),
+    0 8px 16px rgba(0,0,0,0.45);
+  cursor: zoom-in;
+
+}
+
+@media (max-width: 600px) {
+  .bio-foto {
+    float: none;
+    text-align: center;
+    margin: 0 auto 1.4rem;
+    padding-top: 2rem;
+  }
+
+  .bio-foto img {
+    width: 70%;
+    max-width: 260px;
+  }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 10, 0.85);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85%;
+
+  padding: 8px;
+  background: linear-gradient(
+    135deg,
+    #8f6b09,
+    #e5dc7d,
+    #8f6b09
+  );
+
+  background-size: 200% auto;
+  background-position: left center;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.35);
+
+  animation: goldMove 2s ease infinite alternate;
+}
+
+.lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes goldMove {
+  from { background-position: left center; }
+  to   { background-position: right center; }
+}

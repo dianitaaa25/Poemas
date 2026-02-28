@@ -1,0 +1,177 @@
+/* ===== Carrusel dorado ===== */
+.carousel-wrap {
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+  max-width: 700px;
+
+  overflow: hidden;
+
+  /* Fondo pastel claro */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 248, 190, 0.35),
+      rgba(255, 248, 190, 0.15)
+    );
+
+  /* separación visual del body */
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 215, 120, 0.25),
+    0 6px 14px rgba(0,0,0,0.12);
+  padding: 1rem;
+  z-index: 0;
+}
+.carousel-wrap::before,
+.carousel-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 90px;
+  height: 100%;
+  z-index: 6;
+  pointer-events: none;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.carousel-wrap::before {
+  left: 0;
+
+  background: linear-gradient(
+    to right,
+    rgba(255, 248, 190, 0.55),
+    rgba(255, 248, 190, 0.25),
+    rgba(255, 248, 190, 0)
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 35%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 35%,
+    transparent 100%
+  );
+}
+.carousel-wrap::after {
+  right: 0;
+
+  background: linear-gradient(
+    to left,
+    rgba(255, 248, 190, 0.55),
+    rgba(255, 248, 190, 0.25),
+    rgba(255, 248, 190, 0)
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to left,
+    black 0%,
+    black 35%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to left,
+    black 0%,
+    black 35%,
+    transparent 100%
+  );
+}
+
+/* Cinta */
+.carousel-track {
+  display: flex;
+  gap: 0rem; /* 🔹 imágenes más juntas */
+  width: max-content;
+  animation: scroll-carousel 15s linear infinite;
+}
+
+/* Cada item */
+.carousel-item {
+  flex: 0 0 auto;
+}
+
+.carousel-item img {
+  height: 200px; /* ajusta si quieres */
+  width: auto;
+  display: block;
+
+  padding: 6px;
+
+  background: linear-gradient(
+    135deg,
+    #8f6b09,
+    #e5dc7d,
+    #8f6b09
+  );
+
+  background-size: 200% auto;
+  background-position: left center;
+  transition: background-position 1s ease;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.35),
+    0 8px 16px rgba(0,0,0,0.35);
+}
+
+/* Brillo suave al pasar el mouse */
+.carousel-item img:hover {
+  background-position: right center;
+}
+
+/* Animación infinita */
+@keyframes scroll-carousel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .carousel-item img {
+    height: 220px;
+  }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .carousel-wrap {
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(90, 80, 30, 0.35),
+        rgba(90, 80, 30, 0.15)
+      );
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .carousel-wrap::before {
+    background: linear-gradient(
+      to right,
+      rgba(30, 30, 30, 0.6),
+      rgba(30, 30, 30, 0.25),
+      rgba(30, 30, 30, 0)
+    );
+  }
+
+  .carousel-wrap::after {
+    background: linear-gradient(
+      to left,
+      rgba(30, 30, 30, 0.6),
+      rgba(30, 30, 30, 0.25),
+      rgba(30, 30, 30, 0)
+    );
+  }
+}
+

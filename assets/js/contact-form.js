@@ -1,26 +1,47 @@
-document.addEventListener("submit", async (e) => {
-  const form = e.target;
+document.addEventListener("DOMContentLoaded", () => {
 
-  if (!form.matches("#contactForm")) return;
+  document.addEventListener("submit", async (e) => {
+    const form = e.target;
 
-  e.preventDefault();
-  console.log("Submit interceptado ✅");
+    if (!form.matches("#contactForm")) return;
 
-  const toast = document.getElementById("form-toast");
+    e.preventDefault();
+    console.log("Submit interceptado ✅");
 
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: new FormData(form),
-      headers: { Accept: "application/json" }
-    });
+    const toast = document.getElementById("form-toast");
+    const sound = document.getElementById("messageSound");
 
-    if (response.ok) {
-      form.reset();
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 3000);
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      });
+
+      if (response.ok) {
+
+        // Reset formulario
+        form.reset();
+
+        // Mostrar mensaje
+        toast.classList.add("show");
+
+        // 🔊 Reproducir sonido
+        if (sound) {
+          sound.currentTime = 0;
+          sound.play().catch(() => {});
+        }
+
+        // Ocultar mensaje después de 3s
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3000);
+      }
+
+    } catch (error) {
+      console.error("Error enviando formulario", error);
     }
-  } catch (error) {
-    console.error("Error enviando formulario", error);
-  }
-}, true); // 👈 ESTO ES LO QUE FALTABA
+
+  }, true); // 👈 Capturing activado
+
+});
