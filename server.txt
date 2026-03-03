@@ -12,9 +12,3 @@ ifconfig
 wlan0
 
 
-
-
-actualizar github:
-git add .
-git commit -m "cambio"
-git push
