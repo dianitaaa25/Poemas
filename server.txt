@@ -10,3 +10,14 @@ chrome://system
 ifconfig
 
 wlan0
+
+
+
+token:
+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
+
+
+actualizar github:
+git add .
+git commit -m "cambio"
+git push
