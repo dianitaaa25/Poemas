@@ -1,19 +1,6 @@
-function getBasePath() {
-  const path = window.location.pathname
-    .split("/")
-    .filter(p => p.length > 0);
+const BASE_PATH = "/torsacovas/";
 
-  let depth = path.length - 1;
-  let base = "";
-
-  for (let i = 0; i < depth; i++) {
-    base += "../";
-  }
-
-  return base;
-}
-
-function fixLinks(container, base) {
+function fixLinks(container) {
 
   container.querySelectorAll("a[href]").forEach(link => {
     const href = link.getAttribute("href");
@@ -22,9 +9,10 @@ function fixLinks(container, base) {
       href &&
       !href.startsWith("http") &&
       !href.startsWith("#") &&
-      !href.startsWith("mailto")
+      !href.startsWith("mailto") &&
+      !href.startsWith(BASE_PATH)
     ) {
-      link.setAttribute("href", base + href);
+      link.setAttribute("href", BASE_PATH + href);
     }
   });
 
@@ -33,17 +21,17 @@ function fixLinks(container, base) {
 
     if (
       src &&
-      !src.startsWith("http")
+      !src.startsWith("http") &&
+      !src.startsWith(BASE_PATH)
     ) {
-      el.setAttribute("src", base + src);
+      el.setAttribute("src", BASE_PATH + src);
     }
   });
 }
 
 function loadPartial(id, file, callback) {
 
-  const base = getBasePath();
-  const url = base + "partials/" + file;
+  const url = BASE_PATH + "partials/" + file;
 
   fetch(url)
     .then(res => {
@@ -57,7 +45,7 @@ function loadPartial(id, file, callback) {
 
       el.innerHTML = html;
 
-      fixLinks(el, base);
+      fixLinks(el);
 
       if (callback) callback();
     })
