@@ -1,4 +1,7 @@
-const BASE_PATH = "/";
+const BASE_PATH =
+  window.location.hostname === "dianitaaa25.github.io"
+    ? "/torsacovas/"
+    : "/";
 
 function fixLinks(container) {
 
